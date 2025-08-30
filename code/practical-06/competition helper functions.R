@@ -2,6 +2,38 @@
 # lesson is started. Any variables created here will show up in
 # the user's working directory and thus be accessible to them
 # throughout the lesson.
+my_ode <- function(y, times, func, parms) {
+  # y: named vector of initial conditions (e.g., c(N=1, P=2))
+  # times: vector of time points
+  # func: the model function
+  # parms: list of parameters
+  
+  # Initialize output matrix
+  n <- length(times)
+  n_vars <- length(y)
+  out <- matrix(NA, nrow = n, ncol = n_vars + 1)
+  colnames(out) <- c("time", names(y))
+  out[1, ] <- c(times[1], y)
+  
+  # RK4 algorithm
+  for (i in 1:(n-1)) {
+    t <- times[i]
+    h <- times[i+1] - times[i]
+    current_y <- out[i, -1]  # Get current state (exclude time column)
+    
+    k1 <- func(t, current_y, parms)[[1]]
+    k2 <- func(t + h/2, current_y + (h/2)*k1, parms)[[1]]
+    k3 <- func(t + h/2, current_y + (h/2)*k2, parms)[[1]]
+    k4 <- func(t + h, current_y + h*k3, parms)[[1]]
+    
+    # Update state
+    new_y <- current_y + (h/6) * (k1 + 2*k2 + 2*k3 + k4)
+    out[i+1, ] <- c(times[i+1], new_y)
+  }
+  
+  return(as.data.frame(out))
+}
+
 
 #### DEFINE THE MODELS ###
 LVcomp1 <- function(time, state, params) {
@@ -87,10 +119,10 @@ calcLVcomp <- function(a12, a21, K1, K2, r1, r2, yini, times){
   N1star  <- (K1-a21*K2)/(1-a12*a21)
   N2star  <- (K2-a12*K1)/(1-a12*a21)
   
-  outLVa <- data.frame(ode(yini, times, LVcomp1, parms = list(K1 = K1, K2 = K2, r1 = r1, r2 = r2, a12 = a12, a21 = a21)))
+  outLVa <- data.frame(my_ode(yini, times, LVcomp1, parms = list(K1 = K1, K2 = K2, r1 = r1, r2 = r2, a12 = a12, a21 = a21)))
   outLVb <- expand.grid(N1 = seq(1, max(K1, outLVa$N1), length = 6), N2 = seq(1, max(K2, outLVa$N2), length = 6), N1_end = NA, N2_end = NA)
   for(i in 1:nrow(outLVb)){
-    outLVb[i,3:4] <- ode(c(N1 = outLVb$N1[i], N2 = outLVb$N2[i]), times = 0:1, LVcomp1, parms = list(K1 = K1, K2 = K2, r1 = r1, r2 = r2, a12 = a12, a21 = a21))[2,2:3]
+    outLVb[i,3:4] <- my_ode(c(N1 = outLVb$N1[i], N2 = outLVb$N2[i]), times = 0:1, LVcomp1, parms = list(K1 = K1, K2 = K2, r1 = r1, r2 = r2, a12 = a12, a21 = a21))[2,2:3]
   }
   return(list(
     predictions = outLVa, 
@@ -146,11 +178,11 @@ plotLVpp <- function(input1, max.time, K1, K2, a12, a21, ...){
 calcMONODcomp <- function(r, Ku, D, R0, yini, times){
   Rstar <- D*Ku/(r-D)   # The equilibrium concentration of Resource (dR/dt = 0)
   Nstar <- (R0-Rstar)   # The equilibrium concentration of Consumer (dN/dt = 0)
-  outMONODa  <- data.frame(ode(yini, times, monodMod, parms = list(r = r, Ku = Ku, D=D, R0=R0)))
+  outMONODa  <- data.frame(my_ode(yini, times, monodMod, parms = list(r = r, Ku = Ku, D=D, R0=R0)))
   outMONODa[outMONODa<0] <- 0
   outMONODb <- expand.grid(Consumer = seq(0, max(Nstar, outMONODa$Consumer)*1.2, length =6), Resource = seq(0, max(Rstar, outMONODa$Resource)*1.2, length = 6), Consumer_end = NA, Resource_end = NA)
   for(i in 1:nrow(outMONODb)){
-    outMONODb[i,3:4] <- ode(c(Consumer = outMONODb$Consumer[i], Resource = outMONODb$Resource[i]), times = 0:1, monodMod, parms = list(r=r, Ku=Ku, D=D, R0=R0))[2,2:3]
+    outMONODb[i,3:4] <- my_ode(c(Consumer = outMONODb$Consumer[i], Resource = outMONODb$Resource[i]), times = 0:1, monodMod, parms = list(r=r, Ku=Ku, D=D, R0=R0))[2,2:3]
   }
   
   return(list(
@@ -209,7 +241,7 @@ calcMONODcomp2 <- function(r1, r2, Ku1, Ku2, D, R0, yini, times){
   Nstar1 <- (R0-Rstar1)  # The equilibrium concentration of Consumer1 (dN1/dt = 0)
   Nstar2 <- (R0-Rstar2)  # The equilibrium concentration of Consumer2 (dN2/dt = 0)
   Rstar <- min(Rstar1, Rstar2) # take the minimum of those 2 Rstars.
-  outMONODa  <- data.frame(ode(yini, times, monodMod2, parms = list(r1 = r1, r2 = r2, Ku1 = Ku1, Ku2 = Ku2, D = D, R0 = R0)))
+  outMONODa  <- data.frame(my_ode(yini, times, monodMod2, parms = list(r1 = r1, r2 = r2, Ku1 = Ku1, Ku2 = Ku2, D = D, R0 = R0)))
   outMONODa[outMONODa < 0] <- 0
   
   return(list(predictions = outMONODa, equilibria = c(Nstar1 = Nstar1, Nstar2 = Nstar2, Rstar = Rstar), initial_pop_size = yini))

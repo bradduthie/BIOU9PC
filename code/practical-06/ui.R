@@ -1,5 +1,4 @@
 library(shiny)
-library("deSolve");
 # UI settings
 title <- "BIOU9PC Practical 6: Competition - Population and Community Ecology"
 h1    <- "Practical 6: Competition"

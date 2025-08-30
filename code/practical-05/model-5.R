@@ -15,7 +15,9 @@ model5 <- function(input, output, session, params){
       
     )
     # run practical specific funtion using input data here
-    calc5(a = input$a, b = input$b, d = input$d, r = input$r, beta = input$beta, yini = c(N=input$N_init, P=input$P_init), times = params$times)
+    calc5(a = input$a, b = input$b, d = input$d, r = input$r, 
+          beta = input$beta, yini = c(N=input$N_init, P=input$P_init), 
+          times = params$times)
   })
   # Render population trajectories over time
   output$trajPlot <- renderPlot({

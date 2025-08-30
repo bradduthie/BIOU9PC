@@ -273,7 +273,6 @@ create_community_diagram <- function(vals, N, labels = F, levels = NULL, names){
     asp = 0.36,
     margin = 0
   )
-  browser()
 }
 
 #' @title Test community stability

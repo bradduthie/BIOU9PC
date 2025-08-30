@@ -1,6 +1,38 @@
 # LotkaVolterra Model
 # passed to ode() with time, state and params
 # (state must be numeric so list type is automatic)
+my_ode <- function(y, times, func, parms) {
+  # y: named vector of initial conditions (e.g., c(N=1, P=2))
+  # times: vector of time points
+  # func: the model function
+  # parms: list of parameters
+  
+  # Initialize output matrix
+  n <- length(times)
+  n_vars <- length(y)
+  out <- matrix(NA, nrow = n, ncol = n_vars + 1)
+  colnames(out) <- c("time", names(y))
+  out[1, ] <- c(times[1], y)
+  
+  # RK4 algorithm
+  for (i in 1:(n-1)) {
+    t <- times[i]
+    h <- times[i+1] - times[i]
+    current_y <- out[i, -1]  # Get current state (exclude time column)
+    
+    k1 <- func(t, current_y, parms)[[1]]
+    k2 <- func(t + h/2, current_y + (h/2)*k1, parms)[[1]]
+    k3 <- func(t + h/2, current_y + (h/2)*k2, parms)[[1]]
+    k4 <- func(t + h, current_y + h*k3, parms)[[1]]
+    
+    # Update state
+    new_y <- current_y + (h/6) * (k1 + 2*k2 + 2*k3 + k4)
+    out[i+1, ] <- c(times[i+1], new_y)
+  }
+  
+  return(as.data.frame(out))
+}
+
 lotkavol.model <- function(time, state, params){
   N <- state[1]
   P <- state[2]
@@ -43,7 +75,7 @@ calc1 <- function(a, r, d, b, yini, times){
   Nstar <-  r/a
   Pstar <-  d/(a * b)
   params <- list(model=1, a=a, r=r, d=d, b=b, f=NULL, Ref = NULL, K=NULL, beta=NULL)
-  out1a  <- data.frame(ode(yini, times, lotkavol.model, params))
+  out1a  <- data.frame(my_ode(yini, times, lotkavol.model, params))
   out1a[out1a < 0 ] <- 0
   out1b <- expand.grid(
     N = seq(min(out1a$N, 0.9*Pstar), max(out1a$N, 1.1*Pstar), length = 5), 
@@ -52,7 +84,8 @@ calc1 <- function(a, r, d, b, yini, times){
     P_end = NA
   )
   for(i in 1:nrow(out1b)){
-    out1b[i,3:4] <- ode(c(N = out1b$N[i], P = out1b$P[i]), 0:1, lotkavol.model, params)[2,2:3]
+    out1b[i,3:4] <- my_ode(c(N = out1b$N[i], P = out1b$P[i]), 0:1, 
+                                 lotkavol.model, params)[2,2:3]
   }
   return(list(
     predictions = out1a, 
@@ -69,7 +102,7 @@ calc2 <- function(a, r, d, b, K, yini, times){
   Pstar <- d/(a*b)
   Nstar <- Nstar2(a, r, K, Pstar)
   params <- list(model=2, a=a, r=r, d=d, b=b, f=NULL, Ref = NULL, K=K, beta=NULL)
-  out2a <- data.frame(ode(yini, times, lotkavol.model, params))
+  out2a <- data.frame(my_ode(yini, times, lotkavol.model, params))
   out2a[out2a < 0] <- 0
   out2b <- expand.grid(
     N = seq(min(1, out2a$N, 0.9*Pstar), max(out2a$N, 1.1*Pstar), length = 5), 
@@ -78,7 +111,7 @@ calc2 <- function(a, r, d, b, K, yini, times){
     P_end = NA
   )
   for(i in 1:nrow(out2b)){
-    out2b[i,3:4] <- ode(c(N = out2b$N[i], P = out2b$P[i]), 0:1, lotkavol.model, params)[2,2:3]
+    out2b[i,3:4] <- my_ode(c(N = out2b$N[i], P = out2b$P[i]), 0:1, lotkavol.model, params)[2,2:3]
   }
   return(list(
     predictions = out2a, 
@@ -95,7 +128,7 @@ calc3 <- function(a, r, d, b, K, f, yini, times){
   Pstar <- d/(a*b)
   Nstar <- Nstar3(a=a, r=r, K=K, f=f, N=Pstar)
   params <- list(model=3, a=a, r=r, d=d, b=b, f=f, Ref = NULL, K=K, beta=NULL)
-  out3a   <- data.frame(ode(yini, times, lotkavol.model, params))
+  out3a   <- data.frame(my_ode(yini, times, lotkavol.model, params))
   out3a <- out3a[apply(out3a, 1, min)>0,]
   out3b <- expand.grid(
     N = seq(min(1, out3a$N, 0.9*Pstar), max(out3a$N, 1.1*Pstar), length = 5), 
@@ -104,7 +137,8 @@ calc3 <- function(a, r, d, b, K, f, yini, times){
     P_end = NA
   )
   for(i in 1:nrow(out3b)){
-    out3b[i,3:4] <- ode(c(N = out3b$N[i], P = out3b$P[i]), 0:1, lotkavol.model, params)[2,2:3]
+    out3b[i,3:4] <- my_ode(c(N = out3b$N[i], P = out3b$P[i]), 0:1, 
+                           lotkavol.model, params)[2,2:3]
   }
   return(list(
     predictions = out3a, 
@@ -118,8 +152,9 @@ calc3 <- function(a, r, d, b, K, f, yini, times){
 calc4 <- function(a, r, d, b, Ref, yini, times){
   Pstar <-  d/(a * b)
   Nstar <- Nstar4(a=a, r=r, Ref=Ref, N=Pstar)
-  params <- list(model=4, a=a, r=r, d=d, b=b, f = NULL, Ref=Ref, K=NULL, beta=NULL)
-  out1a  <- data.frame(ode(yini, times, lotkavol.model, params))
+  params <- list(model=4, a=a, r=r, d=d, b=b, f = NULL, Ref=Ref,
+                 K=NULL, beta=NULL)
+  out1a  <- data.frame(my_ode(yini, times, lotkavol.model, params))
   out1a[out1a < 0 ] <- 0
   out1b <- expand.grid(
     N = seq(min(out1a$N, 0.9*Pstar), max(out1a$N, 1.1*Pstar), length = 5), 
@@ -128,7 +163,8 @@ calc4 <- function(a, r, d, b, Ref, yini, times){
     P_end = NA
   )
   for(i in 1:nrow(out1b)){
-    out1b[i,3:4] <- ode(c(N = out1b$N[i], P = out1b$P[i]), 0:1, lotkavol.model, params)[2,2:3]
+    out1b[i,3:4] <- my_ode(c(N = out1b$N[i], P = out1b$P[i]), 0:1, 
+                           lotkavol.model, params)[2,2:3]
   }
   return(list(
     predictions = out1a, 

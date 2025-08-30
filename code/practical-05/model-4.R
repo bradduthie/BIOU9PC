@@ -15,7 +15,9 @@ model4 <- function(input, output, session, params){
       need(input$Ref >= 0, "Number of refuges needs to be ≥ 0")
     )
     # run practical specific funtion using input data here
-    calc4(a = input$a, r= input$r, d = input$d, b = input$b, Ref = input$Ref, yini = c(N = input$N_init, P = input$P_init), times = params$times)
+    calc4(a = input$a, r= input$r, d = input$d, b = input$b, 
+          Ref = input$Ref, yini = c(N = input$N_init, P = input$P_init), 
+          times = params$times)
 
   })
   # Render population trajectories over time

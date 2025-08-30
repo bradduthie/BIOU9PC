@@ -1,4 +1,5 @@
 # modules
+library("deSolve");
 source("helpers.R")
 source("predation.R")
 source("model-1.R")

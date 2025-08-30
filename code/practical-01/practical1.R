@@ -53,7 +53,7 @@ practical1_UI <- function(id, h2=NULL, intro=NULL) {
                       value=steps, min=1, max=1000)
         ),
         sliderInput(inputId=ns("rate"), label="Growth rate (r)", width="100%", 
-                    value=rate, min=0.1, max=3, step=0.01, ticks=FALSE, 
+                    value=rate, min=0, max=3, step=0.01, ticks=FALSE, 
                     animate = animationOptions(interval = 100, loop = F, 
                                                playButton = "PLAY", 
                                                pauseButton = "PAUSE")),

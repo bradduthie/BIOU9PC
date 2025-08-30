@@ -13,7 +13,8 @@ model1 <- function(input, output, session, params){
       need(input$P_init > 0, "Predator population size needs to be > 0")
     )
     # run practical specific funtion using input data here
-    calc1(a = input$a, b = input$b, d = input$d, r = input$r, yini = c(N=input$N_init, P=input$P_init), times = params$times)
+    calc1(a = input$a, b = input$b, d = input$d, r = input$r, 
+          yini = c(N=input$N_init, P=input$P_init), times = params$times)
   })
   # Render population trajectories over time
   output$trajPlot <- renderPlot({
