@@ -1,0 +1,23 @@
+/* Colours */
+$brand-primary:         #006635 !default;
+$brand-secondary:       #6E2C6B !default;
+$brand-tertiary:        #ed8231 !default;
+$brand-success:         #5cb85c !default;
+$brand-info:            $brand-primary !default;
+$brand-warning:         $brand-tertiary !default;
+$brand-danger:          #d9534f !default;
+
+/* Typography */
+$font-family-sans-serif: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-weight-normal: 300;
+$font-weight-bold: 600;
+$headings-font-family: $font-family-sans-serif;
+$headings-font-weight: $font-weight-bold;
+$line-height-base: 1.8;
+
+/* Border radius */
+$border-radius-base: 0;
+$badge-border-radius: $border-radius-base;
+
+/* font-size */
+$font-size-root: 14px;

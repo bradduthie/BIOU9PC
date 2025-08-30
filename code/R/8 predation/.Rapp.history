@@ -1,0 +1,562 @@
+source("Practical_1.R")
+calc1
+LotVmod1
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N * P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(round(dN), round(dP))))#
+	})#
+}
+# Set PARAMETERS FOR MODEL 1#
+a      <-  0.0125  # /day  m, rate of ingestion#
+b      <-  0.25   # -      , assimilation efficiency#
+d      <-  0.1    # /day   , mortality rate of predator#
+r      <-  0.1    # /day   , potential population growth rate of prey#
+N_init <- 11#
+P_init <- 15#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+a      <-  0.00125  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.1    # /day   , mortality rate of predator#
+r      <-  0.1    # /day   , potential population growth rate of prey#
+N_init <- 110#
+P_init <- 150#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria
+plot1(input = out1)
+N_init <- 110#
+P_init <- 3000#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+out1$p
+str(out1)
+out1$pred
+N_init <- 110#
+P_init <- 1000#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.1    # /day   , potential population growth rate of prey#
+N_init <- 110#
+P_init <- 1000#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 81#
+P_init <- 321#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N * P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(round(dN, 3), round(dP, 3))))#
+	})#
+}
+N_init <- 81#
+P_init <- 321#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N * P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(round(dN, 10), round(dP, 10))))#
+	})#
+}
+N_init <- 81#
+P_init <- 321#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 321#
+P_init <- 81#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 300#
+P_init <- 100#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N * P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(round(dN, 1), round(dP, 1))))#
+	})#
+}
+N_init <- 300#
+P_init <- 100#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N * P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(round(dN), round(dP))))#
+	})#
+}
+N_init <- 300#
+P_init <- 100#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+a      <-  0.000125  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.1    # /day   , potential population growth rate of prey#
+N_init <- 300#
+P_init <- 100#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria
+N_init <- 3100#
+P_init <- 850#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 3000#
+P_init <- 850#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 3000#
+P_init <- 900#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+a      <-  0.00025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.1    # /day   , potential population growth rate of prey#
+N_init <- 3000#
+P_init <- 900#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 400#
+P_init <- 900#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 1600#
+P_init <- 900#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 1600#
+P_init <- 900#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+a      <-  0.0025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 160#
+P_init <- 90#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+out1$pred
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N * P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(round(dN), round(dP))))#
+	})#
+}
+calc1
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N * P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(round(dN), round(dP))))#
+	})#
+}
+a      <-  0.0025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 160#
+P_init <- 90#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N * P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(round(dN, 10), round(dP, 10))))#
+	})#
+}
+a      <-  0.0025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 160#
+P_init <- 90#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N * P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(dN, dP)))#
+	})#
+}
+a      <-  0.0025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 160#
+P_init <- 90#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * round(N) * round(P)#
+		dN <- r * round(N) - Ingestion#
+		dP <- Ingestion * b - d * round(P)#
+		return(list(c(dN, dP)))#
+	})#
+}
+a      <-  0.0025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 160#
+P_init <- 90#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+out1$pred
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * round(N) * round(P)#
+		dN <- r * round(N) - Ingestion#
+		dP <- Ingestion * b - d * round(P)#
+		return(list(c(round(dN), round(dP))))#
+	})#
+}
+out1$pred
+a      <-  0.0025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 160#
+P_init <- 90#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+out1$pred
+calc1
+data.frame(ode(yini, times, LotVmod1, parms = c(a, r, d, b)))
+yini=c(N=N_init, P=P_init)
+yini
+data.frame(ode(yini, times, LotVmod1, parms = c(a, r, d, b)))
+data.frame(ode(yini, times, LotVmod1, parms = c(a, r, d, b)))
+LotVmod1
+calc1
+out1a
+calc1 <- function(a, r, d, b, yini, times){#
+	stopifnot(a>0, r>0, b>0, d>0, yini>0)#
+	yini <- round(yini)#
+	out1a  <- data.frame(ode(yini, times, LotVmod1, parms = c(a, r, d, b)))#
+	out1a[out1a<0] <- 0#
+	Nstar = r/a#
+	Pstar = d/(a * b)#
+	out1b <- expand.grid(N = seq(min(out1a$N, 0.9*Pstar), max(out1a$N, 1.1*Pstar), length = 11), P = seq(min(out1a$P, 0.9*Nstar), max(out1a$P, 1.1*Nstar), length = 11), N_end = NA, P_end = NA)#
+	for(i in 1:nrow(out1b)){#
+	out1b[i,3:4] <- ode(c(N = out1b$N[i], P = out1b$P[i]), times = 0:1, LotVmod1, parms = c(a, r, d, b))[2,2:3]#
+	}#
+	return(list(predictions =round(out1a), phase_plane = out1b, equilibria = c(Nstar = Nstar, Pstar = Pstar), initial_pop_size = yini))#
+}
+########################################
+###          Model 1                ####
+### Simplest possible predator-prey ####
+### model. Prey grow exponentially, ####
+### No density dependence           ####
+########################################
+# Set PARAMETERS FOR MODEL 1#
+a      <-  0.0025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 160#
+P_init <- 90#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+out1$pred
+a      <-  0.025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 16#
+P_init <- 9#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 17#
+P_init <- 11#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 18#
+P_init <- 11#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		Ingestion <- a * N*P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(dN, dP)))#
+	})#
+}#
+#
+calc1 <- function(a, r, d, b, yini, times){#
+	stopifnot(a>0, r>0, b>0, d>0, yini>0)#
+	yini <- round(yini)#
+	out1a  <- data.frame(ode(yini, times, LotVmod1, parms = c(a, r, d, b)))#
+	out1a[out1a<0] <- 0#
+	Nstar = r/a#
+	Pstar = d/(a * b)#
+	out1b <- expand.grid(N = seq(min(out1a$N, 0.9*Pstar), max(out1a$N, 1.1*Pstar), length = 11), P = seq(min(out1a$P, 0.9*Nstar), max(out1a$P, 1.1*Nstar), length = 11), N_end = NA, P_end = NA)#
+	for(i in 1:nrow(out1b)){#
+	out1b[i,3:4] <- ode(c(N = out1b$N[i], P = out1b$P[i]), times = 0:1, LotVmod1, parms = c(a, r, d, b))[2,2:3]#
+	}#
+	return(list(predictions =round(out1a), phase_plane = out1b, equilibria = c(Nstar = Nstar, Pstar = Pstar), initial_pop_size = yini))#
+}
+N_init <- 18#
+P_init <- 11#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 20#
+P_init <- 11#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 20#
+P_init <- 12#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 20#
+P_init <- 10#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+P_init <- 3#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+P_init <- 6#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+P_init <- 7#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+out1$pred
+source("Practical_1.R")
+LotVmod1
+LotVmod1 <- function(Time, State, Pars) {#
+	with(as.list(c(State, Pars)), {#
+		if (P < 1) P <- 0#
+		if (N < 1) N <- 0#
+		Ingestion <- a * N*P#
+		dN <- r * N - Ingestion#
+		dP <- Ingestion * b - d * P#
+		return(list(c(dN, dP)))#
+	})#
+}#
+#
+calc1 <- function(a, r, d, b, yini, times){#
+	stopifnot(a>0, r>0, b>0, d>0, yini>0)#
+	yini <- round(yini)#
+	out1a  <- data.frame(ode(yini, times, LotVmod1, parms = c(a, r, d, b)))#
+	out1a[out1a<0] <- 0#
+	Nstar = r/a#
+	Pstar = d/(a * b)#
+	out1b <- expand.grid(N = seq(min(out1a$N, 0.9*Pstar), max(out1a$N, 1.1*Pstar), length = 11), P = seq(min(out1a$P, 0.9*Nstar), max(out1a$P, 1.1*Nstar), length = 11), N_end = NA, P_end = NA)#
+	for(i in 1:nrow(out1b)){#
+	out1b[i,3:4] <- ode(c(N = out1b$N[i], P = out1b$P[i]), times = 0:1, LotVmod1, parms = c(a, r, d, b))[2,2:3]#
+	}#
+	return(list(predictions =round(out1a), phase_plane = out1b, equilibria = c(Nstar = Nstar, Pstar = Pstar), initial_pop_size = yini))#
+}
+a      <-  0.025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 20#
+P_init <- 7#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+a      <-  0.0025  # /day  m, rate of ingestion#
+b      <-  0.025   # -      , assimilation efficiency#
+d      <-  0.01    # /day   , mortality rate of predator#
+r      <-  0.3    # /day   , potential population growth rate of prey#
+N_init <- 20#
+P_init <- 7#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+N_init <- 200#
+P_init <- 70#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)
+out1$pred
+r      <-  0.2    # /day   , potential population growth rate of prey#
+N_init <- 200#
+P_init <- 70#
+# Run Model 1:#
+out1 <- calc1(a=a, b=b, d=d, r=r, yini=c(N=N_init, P=P_init), times=times)#
+# Obtain 'equilibrium' population sizes from Model 1#
+out1$equilibria#
+# Plot up results of Model 1#
+plot1(input = out1)

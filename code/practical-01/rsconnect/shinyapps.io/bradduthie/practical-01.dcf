@@ -1,0 +1,12 @@
+name: practical-01
+title: practical-01
+username: bradduthie
+account: bradduthie
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 15304825
+bundleId: 10836910
+url: https://bradduthie.shinyapps.io/practical-01/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

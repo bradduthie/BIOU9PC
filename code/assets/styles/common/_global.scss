@@ -1,0 +1,27 @@
+a.disabled {
+	cursor: default;
+}
+.bg-primary {
+  background-color: rgba($brand-primary,0.2);
+}
+.bg-secondary {
+  background-color: rgba($brand-secondary,0.2);
+}
+.text-secondary {
+  color: $brand-secondary;
+}
+.bg-tertiary {
+  background-color: rgba($brand-tertiary,0.2);
+}
+.text-tertiary {
+  color: $brand-tertiary;
+}
+
+.alert {
+  overflow: auto;
+  &.alert-info {
+    background-color: rgba($brand-info, 0.2);
+    border-color: rgba($brand-info, 0.3);
+    color: darken($brand-info, 15%);
+  }
+}

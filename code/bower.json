@@ -1,0 +1,32 @@
+{
+  "name": "ramen",
+  "version": "0.1.1",
+  "homepage": "https://github.com/rozeykex/ramen",
+  "authors": [
+    "Rose McKeon <rose@rosemckeon.co.uk>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "main": [
+    "./app/ui.R",
+    "./app/www/styles/main.css",
+    "./app/www/scripts/main.js"
+  ],
+  "ignore": [
+    ".*",
+    "node_modules",
+    "composer.json",
+    "packrat",
+    "assets",
+    "bower_components",
+    "gulpfile.js",
+    "ramen.Rproj"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "3.3.7",
+    "raleway": "^1.0.1",
+    "components-font-awesome": "^4.7.0",
+    "respond": "1.4.2",
+    "html5shiv": "3.7.3"
+  }
+}

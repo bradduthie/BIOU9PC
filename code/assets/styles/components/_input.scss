@@ -1,0 +1,94 @@
+.panel-body {
+  .form-group {
+    margin-bottom: 0;
+  }
+}
+
+/* sliders */
+.irs-bar,
+.irs-single,
+.irs-bar-edge {
+  background: $brand-secondary;
+}
+.irs-bar {
+  border-top-color: $brand-secondary;
+  border-bottom-color: $brand-secondary;
+}
+.irs-bar-edge {
+  border-color: $brand-secondary;
+}
+
+/* Food webs matrix */
+$grid-columns: 22;
+$grid-gutter-width: 10px;
+
+.foodwebs-interaction-key li {
+  &:nth-child(2) {
+    color: $brand-warning; 
+  }
+  &:nth-child(3) {
+    color: $brand-success; 
+  }
+  &:nth-child(4) {
+    color: $brand-danger; 
+  }
+  &:nth-child(5) {
+    color: #0bbddb; 
+  }
+}
+#foodwebs-matrix {
+  .mat-header {
+    line-height: 1.15;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .foodwebs-row {
+    @include make-row;
+  }
+  .foodwebs-col,
+  .foodwebs-diagonal-col,
+  .foodwebs-trophic-col,
+  .foodwebs-species-col {
+    @include make-lg-column(1);
+  }
+  .foodwebs-diagonal-col {
+    .selectize-input {
+      border: 1px solid $brand-secondary;
+      background-color: rgba($brand-secondary, 0.3);
+    }
+  }
+  .foodwebs-trophic-col {
+    .selectize-input {
+      border: 1px solid $brand-primary;
+      background-color: rgba($brand-primary, 0.3);
+      .item,
+      [data-selectable] {
+        font-weight: normal;
+      }
+    }
+  }
+  .foodwebs-species-col {
+    .form-control {
+      padding: 6px;
+      height: 34px;
+    }
+  }
+  .selectize-input .item,
+  [data-selectable] {
+    font-weight: bold;
+  }
+  [data-value="c"] {
+    color: $brand-warning; 
+  }
+  [data-value="P"] {
+    color: $brand-success; 
+  }
+  [data-value="p"] {
+    color: $brand-danger; 
+  }
+  [data-value="m"] {
+    color: #0bbddb; 
+  }
+}
+$grid-columns: 12;
+$grid-gutter-width: 30px;

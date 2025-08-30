@@ -1,0 +1,24 @@
+.shiny-table.table-striped {
+  margin: 2rem auto;
+}
+#projection-Data,
+#demographics-Data,
+#hunting-Data,
+#foodwebs-matrix,
+#foodwebs-stabilitydata  {
+  width: 100%;
+  max-width: 100%;
+  height: 395px;
+  overflow: scroll;
+  position: relative;
+  .table {
+    position: absolute;
+  }
+}
+#foodwebs-matrix{
+  height: 700px;
+}
+
+#foodwebs-diagram {
+  min-height: 700px;
+}

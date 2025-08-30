@@ -1,0 +1,12 @@
+name: practical-06
+title: practical-06
+username:
+account: paine
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 223056
+bundleId: 1066844
+url: https://paine.shinyapps.io/practical-06/
+when: 1510230362.6706
+asMultiple: FALSE
+asStatic: FALSE

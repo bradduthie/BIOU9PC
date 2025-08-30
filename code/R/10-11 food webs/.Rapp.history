@@ -1,0 +1,801 @@
+# Biodiversity-mediated disease transmission models#
+rm(list=ls())#
+setwd("~/Documents/Professional/Stirling/Teaching/modules/BIO9CE/2014/practicals/3 host-parasite")#
+source('helper functions.R')
+# Biodiversity-mediated disease transmission models#
+rm(list=ls())#
+setwd("~/Documents/Professional/Stirling/Teaching/modules/BIO9CE/2014/practicals/3 host-parasite")#
+source('helper functions.R')#
+# Scenario choices.  Only one of these can be 'T' for a given simulation#
+DEFAULT <- F    # Nothing changes#
+NS      <- T    # Non-susceptible hosts added; host population size doubles#
+SUS     <- F    # Susceptible hosts added; host population size doubles#
+BOTH    <- F    # Sus and non-sus host added in equal quantities (to existing sus pop); host population trebles#
+HALFREP <- F    # Half of the susceptible hosts gradually replaced by non-sus hosts; host population size stays constant#
+# Demographic parameters#
+trans.rate.both <- 0.5  # Chance that an infectious vector bite infects a host, and, that an infectious host infects an uninfected vector that bites it. Vary this between 10% and 100%#
+rec.rate        <- 0.01 # Monthly host recovery rate. Vary this between 0 and 4.5%. As a point of comparison, 2% recovery 0.02 results in a 73.8% probability of recovery within six months. #
+ii              <- T    # If TRUE, vector population increases linearly with host population. If FALSE, vector population increases exponentially
+output <- simulator()#
+####################################################################
+#~~~~~~~~~~~~~~~ PROCESS THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+outpop <- output$pop#
+output_summary(outpop)
+# Biodiversity-mediated disease transmission models#
+rm(list=ls())#
+setwd("~/Documents/Professional/Stirling/Teaching/modules/BIO9CE/2014/practicals/3 host-parasite")#
+source('helper functions.R')#
+# Scenario choices.  Only one of these can be 'T' for a given simulation#
+DEFAULT <- F    # Nothing changes#
+NS      <- T    # Non-susceptible hosts added; host population size doubles#
+SUS     <- F    # Susceptible hosts added; host population size doubles#
+BOTH    <- F    # Sus and non-sus host added in equal quantities (to existing sus pop); host population trebles#
+HALFREP <- F    # Half of the susceptible hosts gradually replaced by non-sus hosts; host population size stays constant#
+# Demographic parameters#
+trans.rate.both <- 0.5  # Chance that an infectious vector bite infects a host, and, that an infectious host infects an uninfected vector that bites it. Vary this between 10% and 100%#
+rec.rate        <- 0.01 # Monthly host recovery rate. Vary this between 0 and 4.5%. As a point of comparison, 2% recovery 0.02 results in a 73.8% probability of recovery within six months. #
+ii              <- T    # If TRUE, vector population increases linearly with host population. If FALSE, vector population increases exponentially
+output <- simulator()
+source('helper functions.R')
+traceback()
+# Biodiversity-mediated disease transmission models#
+rm(list=ls())#
+setwd("~/Documents/Professional/Stirling/Teaching/modules/BIO9CE/2014/practicals/3 host-parasite")#
+source('helper functions.R')#
+# Scenario choices.  Only one of these can be 'T' for a given simulation#
+DEFAULT <- F    # Nothing changes#
+NS      <- T    # Non-susceptible hosts added; host population size doubles#
+SUS     <- F    # Susceptible hosts added; host population size doubles#
+BOTH    <- F    # Sus and non-sus host added in equal quantities (to existing sus pop); host population trebles#
+HALFREP <- F    # Half of the susceptible hosts gradually replaced by non-sus hosts; host population size stays constant#
+# Demographic parameters#
+trans.rate <- 0.5  # Chance that an infectious vector bite infects a host, and, that an infectious host infects an uninfected vector that bites it. Vary this between 10% and 100%#
+rec.rate        <- 0.01 # Monthly host recovery rate. Vary this between 0 and 4.5%. As a point of comparison, 2% recovery 0.02 results in a 73.8% probability of recovery within six months. #
+ii              <- T    # If TRUE, vector population increases linearly with host population. If FALSE, vector population increases exponentially
+output <- simulator()
+source('helper functions.R')
+# Biodiversity-mediated disease transmission models#
+rm(list=ls())#
+setwd("~/Documents/Professional/Stirling/Teaching/modules/BIO9CE/2014/practicals/3 host-parasite")#
+source('helper functions.R')#
+# Scenario choices.  Only one of these can be 'T' for a given simulation#
+DEFAULT <- F    # Nothing changes#
+NS      <- T    # Non-susceptible hosts added; host population size doubles#
+SUS     <- F    # Susceptible hosts added; host population size doubles#
+BOTH    <- F    # Sus and non-sus host added in equal quantities (to existing sus pop); host population trebles#
+HALFREP <- F    # Half of the susceptible hosts gradually replaced by non-sus hosts; host population size stays constant#
+# Demographic parameters#
+trans.rate <- 0.5  # Chance that an infectious vector bite infects a host, and, that an infectious host infects an uninfected vector that bites it. Vary this between 10% and 100%#
+rec.rate        <- 0.01 # Monthly host recovery rate. Vary this between 0 and 4.5%. As a point of comparison, 2% recovery 0.02 results in a 73.8% probability of recovery within six months. #
+ii              <- T    # If TRUE, vector population increases linearly with host population. If FALSE, vector population increases exponentially
+output <- simulator()
+source('helper functions.R')
+source('helper functions.R')
+output <- simulator()
+outpop <- output$pop
+output_summary(outpop)
+NSann<-SUSann<-vecann<-Shostann<-hostann<-infadvecann<-infvecann<-infhostann<-advecann<-numeric(timesteps%/%120)#
+for (j in 1:years){#
+	hostann[j]    <- sum(outpop$host.tot [c(((120*j)-119):(120*j))])#
+	Shostann[j]   <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	vecann[j]     <- sum(outpop$vec.tot  [c(((120*j)-119):(120*j))])#
+	advecann[j]   <- sum(outpop$vecad.tot[c(((120*j)-119):(120*j))])#
+	infhostann[j] <- sum(outpop$Itot     [c(((120*j)-119):(120*j))])#
+	infvecann[j]  <- sum(outpop$totinfvec[c(((120*j)-119):(120*j))])#
+	infadvecann[j]<- sum(outpop$totinfadvec[c(((120*j)-119):(120*j))])#
+	SUSann[j]     <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	NSann[j]      <- sum(outpop$NShost.tot[c(((120*j)-119):(120*j))])#
+	}#
+#
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5))#
+rate  <-round(rate,6)#
+vrate <-(vecann[length(vecann)]/vecann[5])^(1/(years-5))#
+vrate <-round(vrate,6)#
+#
+propinfhost <-infhostann/Shostann#
+PIHbase     <-propinfhost[1]#
+propinfvec  <-infvecann/vecann#
+propinfadvec<-infadvecann/advecann#
+mean(outpop$b.rate.track)#
+mean(outpop$sb.rate.track)#
+output_summary(outpop)
+output_summary
+output_summary <- function(input) {#
+	startx <- mean(input$vecad.tot[c(1000:2000)])#
+	finish.vec <- mean(input$vecad.tot[c(7000:8000)])#
+	vir <- finish.vec/startx#
+#
+	startx <- mean(input$host.tot[c(1000:2000)])#
+	finish.host <- mean(input$host.tot[c(7000:8000)])#
+	hir <- finish.host/startx#
+#
+	hostbase <- infhostann[stay]#
+	vecbase <- infvecann[stay]#
+	PIH <- propinfhost#
+	PIV <- propinfvec#
+	PIHchange <- PIH[length(PIH)]/PIHbase#
+	rel <- ifelse(ii, "linear", "exponential")#
+	cat("Vector increase rate:", vir, "\nHost increase rate = ", hir, #
+		"\nFinal vector/host ratio = ", finish.vec/finish.host, "\nTransmission success rate = ", #
+		trans.rate, "\nHost recovery rate = ", rec.rate, "\nVector-host relationship = ", rel, #
+		"\nFinal density of infected adult vectors (indexed) = ", DIAV[length(DIAV)], "\nFinal proportion of infected susceptible hosts (indexed) = ", PIHchange)#
+}
+output_summary(outpop)
+output_summary <- function(input) {#
+	startx <- mean(input$vecad.tot[c(1000:2000)])#
+	finish.vec <- mean(input$vecad.tot[c(7000:8000)])#
+	vir <- finish.vec/startx#
+#
+	startx <- mean(input$host.tot[c(1000:2000)])#
+	finish.host <- mean(input$host.tot[c(7000:8000)])#
+	hir <- finish.host/startx#
+#
+	hostbase <- infhostann[stay]#
+	vecbase <- infvecann[stay]#
+	PIH <- propinfhost#
+	PIV <- propinfvec#
+	PIHchange <- PIH[length(PIH)]/PIHbase#
+	rel <- ifelse(ii, "linear", "exponential")#
+	cat("Vector increase rate:", vir, "\nHost increase rate = ", hir, "\nFinal vector/host ratio = ", finish.vec/finish.host, "\nTransmission success rate = ", trans.rate, "\nHost recovery rate = ", rec.rate, "\nVector-host relationship = ", rel, "\nFinal proportion of infected susceptible hosts (indexed) = ", PIHchange)#
+}
+output_summary(outpop)
+NSann<-SUSann<-vecann<-Shostann<-hostann<-infadvecann<-infvecann<-infhostann<-advecann<-numeric(timesteps%/%120)#
+for (j in 1:years){#
+	hostann[j]    <- sum(outpop$host.tot [c(((120*j)-119):(120*j))])#
+	Shostann[j]   <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	vecann[j]     <- sum(outpop$vec.tot  [c(((120*j)-119):(120*j))])#
+	advecann[j]   <- sum(outpop$vecad.tot[c(((120*j)-119):(120*j))])#
+	infhostann[j] <- sum(outpop$Itot     [c(((120*j)-119):(120*j))])#
+	infvecann[j]  <- sum(outpop$totinfvec[c(((120*j)-119):(120*j))])#
+	infadvecann[j]<- sum(outpop$totinfadvec[c(((120*j)-119):(120*j))])#
+	SUSann[j]     <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	NSann[j]      <- sum(outpop$NShost.tot[c(((120*j)-119):(120*j))])#
+	}#
+#
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5))#
+rate  <-round(rate,6)#
+vrate <-(vecann[length(vecann)]/vecann[5])^(1/(years-5))#
+vrate <-round(vrate,6)#
+#
+propinfhost <-infhostann/Shostann#
+PIHbase     <-propinfhost[1]#
+propinfvec  <-infvecann/vecann#
+propinfadvec<-infadvecann/advecann
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5))
+rate  <-round(rate,6)
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5))
+rate
+vrate
+vrate <-(vecann[length(vecann)]/vecann[5])^(1/(years-5)) # population growth rate ,vectors
+vrate
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5)) # population growth rate, hosts
+rate
+infvecann
+vecann
+propinfadvec<-infadvecann/advecann# propoption of infected adult vectors
+propinfadvec
+propinfvec
+PIHbase
+mean(outpop$b.rate.track)
+mean(outpop$sb.rate.track)
+output_summary(outpop)
+output_summary(outpop)
+mean(outpop$sb.rate.track)
+mean(outpop$b.rate.track)
+outpop$b.rate.track
+output_summary(outpop)
+plotter(outpop)
+vrate
+plotter <- function(input) {#
+	op <- par(mfrow = c(3, 2), mar = c(4, 4, 1, 1), oma = c(1, 1, 1, 1))#
+#
+	plot(input$vec.tot, type = "l", xlab = 'Time', ylab = 'Vector population size')#
+	mtext(paste("VHmode", VHmode, "NEWvecMAT - Vectors - rate_", round(vrate, 3), sep = " "), 3, line = 0)#
+#
+	plot(input$host.tot, type = "l", ylab = 'Host population size', xlab = 'Time')#
+	mtext(paste("Ratio ", hostscaler, ":", round(vecscalerbasic, 2), " Hosts RR ", round(rec.rate, 2), " rate ", round(rate, 3), sep = ""), 3, line = 0)#
+#
+	plot(input$b.rate.track, type = "l", ylab = 'Bites per vector per time-step', xlab = 'Time')#
+#
+	plot(input$sb.rate.track, type = "l", ylab = 'Rate of change between susc and inf vectors', xlab = 'Time')#
+#
+	plot(input$vphtrack, type = "l", ylab = 'Vectors per host', xlab = 'Time')#
+	par(op)#
+}#
+population_plotter <- function() {#
+	op <- par(mfrow = c(1, 2), mar = c(4, 4, 1, 1))#
+#
+	hostbase <- infhostann[stay]#
+	vecbase <- infvecann[stay]#
+#
+	hostbase <- infhostann[stay]#
+	vecbase <- infvecann[stay]#
+	DIH <- infhostann/hostbase#
+	DIV <- infvecann/vecbase#
+#
+	DIAV <- infadvecann/infadvecann[stay]#
+	PIAV <- propinfadvec#
+#
+	PIH <- propinfhost#
+	PIV <- propinfvec#
+	PIHchange <- PIH[length(PIH)]/PIHbase#
+#
+	plot(PIH, type = "l", col = "red", lty = 3, xlab = "Time", ylab = "Proportion infected", #
+		ylim = c(0, 1))#
+	lines(PIAV, lty = 1, col = "red")#
+	abline(v = c(20, 35), lty = 2)#
+	legend("topright", c("Proportion infected Hosts", "Proportion infected adult Vectors"), #
+		lty = c(3, 1), col = "red", bg = "white", bty = "o")#
+#
+	plottop <- max(1.2, max(DIH, DIAV))#
+	plot(DIH, type = "l", col = "red", lty = 3, xlab = "Time", ylab = "Density infected", #
+		ylim = c(0, plottop))#
+	lines(DIAV, lty = 1, col = "red")#
+	abline(h = 1, lty = 2, lwd = 1, col = "black")#
+	abline(v = c(20, 35), lty = 2)#
+	legend("bottomright", c("Density infected hosts", "Density infected adult vectors"), #
+		lty = c(3, 1), col = "red", bg = "white", bty = "o")#
+#
+	par(op)#
+}#
+host_dynamics_plotter <- function(input) {#
+	cols <- c('pink', 'yellow', 'limegreen', 'red', 'darkgoldenrod', 'forestgreen')#
+	Hpop <- input[, c("Sjuv", "Ijuv", "Rjuv", "Sy2", "Iy2", "Ry2")]#
+	temp <- t(apply(Hpop, 1, cumsum))#
+	temp <- apply(temp, 2, FUN = function(x) {lowess(x, f = 0.005)$y})#
+	op <- par(mfrow = c(1, 1), mar = c( 4, 4, 2, 2))#
+	plot(1, xlim = c(0, nrow(temp)), ylim = c(0, max(temp)), type = "n", ylab = "Population size of hosts", xlab = 'time')#
+	polygon(c(1:nrow(temp), nrow(temp):1), c(rep(0, nrow(temp)), rev(temp[, 1])), col = 'pink', border = NA)#
+	for (i in 1:5) {#
+		polygon(c(1:nrow(temp), nrow(temp):1), c(temp[, i], rev(temp[, i + 1])), col = cols[i+1], border = NA)#
+	}#
+	legend("topleft", legend = c("Recovered adults", 'Infercted adults', 'Susceptible adults', 'Recovered juveniles', 'Infected juveniles', 'Susceptible juveniles'), fill = rev(cols), ncol = 2)#
+	par(op)#
+}#
+output_summary <- function(input) {#
+	startx <- mean(input$vecad.tot[c(1000:2000)])#
+	finish.vec <- mean(input$vecad.tot[c(7000:8000)])#
+	vir <- finish.vec/startx#
+#
+	startx <- mean(input$host.tot[c(1000:2000)])#
+	finish.host <- mean(input$host.tot[c(7000:8000)])#
+	hir <- finish.host/startx#
+#
+	hostbase <- infhostann[stay]#
+	vecbase <- infvecann[stay]#
+	PIH <- propinfhost#
+	PIV <- propinfvec#
+	PIHchange <- PIH[length(PIH)]/PIHbase#
+	rel <- ifelse(ii, "linear", "exponential")#
+	cat("Vector increase rate:", vir, "\nHost increase rate = ", hir, "\nFinal vector/host ratio = ", finish.vec/finish.host, "\nTransmission success rate = ", trans.rate, "\nHost recovery rate = ", rec.rate, "\nVector-host relationship = ", rel, "\nFinal proportion of infected susceptible hosts (indexed) = ", PIHchange)#
+}
+plotter(outpop)
+plotter <- function(input) {#
+	op <- par(mfrow = c(3, 2), mar = c(4, 4, 1, 1), oma = c(1, 1, 1, 1), xpd = NA)#
+#
+	plot(input$vec.tot, type = "l", xlab = 'Time', ylab = 'Vector population size')#
+	mtext(paste("VHmode", VHmode, "Vectors - rate ", round(vrate, 3), sep = " "), 3, line = 0)#
+#
+	plot(input$host.tot, type = "l", ylab = 'Host population size', xlab = 'Time')#
+	mtext(paste("Ratio ", hostscaler, ":", round(vecscalerbasic, 2), " Hosts RR ", round(rec.rate, 2), " rate ", round(rate, 3), sep = ""), 3, line = 0)#
+#
+	plot(input$b.rate.track, type = "l", ylab = 'Bites per vector per time-step', xlab = 'Time')#
+#
+	plot(input$sb.rate.track, type = "l", ylab = 'Rate of change between susc and inf vectors', xlab = 'Time')#
+#
+	plot(input$vphtrack, type = "l", ylab = 'Vectors per host', xlab = 'Time')#
+	par(op)#
+}
+plotter(outpop)
+# Scenario choices.  Note that only one of these can be TRUE for a given simulation run#
+DEFAULT <- T    # Nothing changes#
+NS      <- F    # Non-susceptible hosts added; host population size doubles#
+SUS     <- F    # Susceptible hosts added; host population size doubles#
+BOTH    <- F    # Sus and non-sus host added in equal quantities (to existing sus pop); host population trebles#
+HALFREP <- F    # Half of the susceptible hosts gradually replaced by non-sus hosts; host population size stays constant#
+# Demographic parameters#
+trans.rate <- 0.5  # Chance that an infectious vector bite infects a host, and, that an infectious host infects an uninfected vector that bites it. Vary this between 10% and 100%#
+rec.rate        <- 0.01 # Monthly host recovery rate. Vary this between 0 and 4.5%. As a point of comparison, 2% recovery 0.02 results in a 73.8% probability of recovery within six months. #
+ii              <- T    # If TRUE, vector population increases linearly with host population. If FALSE, vector population increases exponentially#
+####################################################################
+#~~~~~~~~~~~~~~~ RUN THE SIMULATION          ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+output <- simulator()#
+outpop <- output$pop#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PROCESS THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+#
+# Summarize the output by year (the raw output is per 3 days...)#
+NSann<-SUSann<-vecann<-Shostann<-hostann<-infadvecann<-infvecann<-infhostann<-advecann<-numeric(timesteps%/%120)#
+for (j in 1:years){#
+	hostann[j]    <- sum(outpop$host.tot [c(((120*j)-119):(120*j))])#
+	Shostann[j]   <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	vecann[j]     <- sum(outpop$vec.tot  [c(((120*j)-119):(120*j))])#
+	advecann[j]   <- sum(outpop$vecad.tot[c(((120*j)-119):(120*j))])#
+	infhostann[j] <- sum(outpop$Itot     [c(((120*j)-119):(120*j))])#
+	infvecann[j]  <- sum(outpop$totinfvec[c(((120*j)-119):(120*j))])#
+	infadvecann[j]<- sum(outpop$totinfadvec[c(((120*j)-119):(120*j))])#
+	SUSann[j]     <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	NSann[j]      <- sum(outpop$NShost.tot[c(((120*j)-119):(120*j))])#
+	}#
+#
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5)) # population growth rate, hosts#
+vrate <-(vecann[length(vecann)]/vecann[5])^(1/(years-5)) # population growth rate ,vectors#
+#
+propinfhost <-infhostann/Shostann # propoption of infected hosts#
+PIHbase     <-propinfhost[1]      # initial propoption of infected hosts#
+propinfvec  <-infvecann/vecann    # propoption of infected vectors#
+propinfadvec<-infadvecann/advecann# propoption of infected adult vectors#
+#
+mean(outpop$b.rate.track)#
+mean(outpop$sb.rate.track)#
+output_summary(outpop) # note that 'indexed' means, 'relative to initial conditions, which are set to be 1'#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PLOT UP THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+plotter(outpop)
+ii              <- F    # If TRUE, vector population increases linearly with host population. If FALSE, vector population increases exponentially#
+####################################################################
+#~~~~~~~~~~~~~~~ RUN THE SIMULATION          ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+output <- simulator()#
+outpop <- output$pop#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PROCESS THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+#
+# Summarize the output by year (the raw output is per 3 days...)#
+NSann<-SUSann<-vecann<-Shostann<-hostann<-infadvecann<-infvecann<-infhostann<-advecann<-numeric(timesteps%/%120)#
+for (j in 1:years){#
+	hostann[j]    <- sum(outpop$host.tot [c(((120*j)-119):(120*j))])#
+	Shostann[j]   <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	vecann[j]     <- sum(outpop$vec.tot  [c(((120*j)-119):(120*j))])#
+	advecann[j]   <- sum(outpop$vecad.tot[c(((120*j)-119):(120*j))])#
+	infhostann[j] <- sum(outpop$Itot     [c(((120*j)-119):(120*j))])#
+	infvecann[j]  <- sum(outpop$totinfvec[c(((120*j)-119):(120*j))])#
+	infadvecann[j]<- sum(outpop$totinfadvec[c(((120*j)-119):(120*j))])#
+	SUSann[j]     <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	NSann[j]      <- sum(outpop$NShost.tot[c(((120*j)-119):(120*j))])#
+	}#
+#
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5)) # population growth rate, hosts#
+vrate <-(vecann[length(vecann)]/vecann[5])^(1/(years-5)) # population growth rate ,vectors#
+#
+propinfhost <-infhostann/Shostann # propoption of infected hosts#
+PIHbase     <-propinfhost[1]      # initial propoption of infected hosts#
+propinfvec  <-infvecann/vecann    # propoption of infected vectors#
+propinfadvec<-infadvecann/advecann# propoption of infected adult vectors#
+#
+mean(outpop$b.rate.track)#
+mean(outpop$sb.rate.track)#
+output_summary(outpop) # note that 'indexed' means, 'relative to initial conditions, which are set to be 1'#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PLOT UP THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+plotter(outpop)
+1:years
+input <- outpop
+plot(input$host.tot, type = "l", ylab = 'Host population size', xlab = 'Time')
+lines(1:years*120, hostann)
+lines(1:years*120, hostann, col = 'red')
+1:years*120
+hostann
+hostann[j]    <- mean(outpop$host.tot [c(((120*j)-119):(120*j))])
+NSann<-SUSann<-vecann<-Shostann<-hostann<-infadvecann<-infvecann<-infhostann<-advecann<-numeric(timesteps%/%120)#
+for (j in 1:years){#
+	hostann[j]    <- mean(outpop$host.tot [c(((120*j)-119):(120*j))])#
+	Shostann[j]   <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	vecann[j]     <- sum(outpop$vec.tot  [c(((120*j)-119):(120*j))])#
+	advecann[j]   <- sum(outpop$vecad.tot[c(((120*j)-119):(120*j))])#
+	infhostann[j] <- sum(outpop$Itot     [c(((120*j)-119):(120*j))])#
+	infvecann[j]  <- sum(outpop$totinfvec[c(((120*j)-119):(120*j))])#
+	infadvecann[j]<- sum(outpop$totinfadvec[c(((120*j)-119):(120*j))])#
+	SUSann[j]     <- sum(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	NSann[j]      <- sum(outpop$NShost.tot[c(((120*j)-119):(120*j))])#
+	}
+hostann
+plot(input$host.tot, type = "l", ylab = 'Host population size', xlab = 'Time')#
+	lines(1:years*120, hostann, col = 'red')
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5)) # population growth rate, hosts
+rate
+plotter <- function(input) {#
+	op <- par(mfrow = c(3, 2), mar = c(4, 4, 1, 1), oma = c(1, 1, 1, 1), xpd = NA)#
+#
+	plot(input$vec.tot, type = "l", xlab = 'Time', ylab = 'Vector population size')#
+	lines(1:years*120, vecann, col = 'red')#
+	mtext(paste("VHmode", VHmode, "Vectors - rate ", round(vrate, 3), sep = " "), 3, line = 0)#
+#
+	plot(input$host.tot, type = "l", ylab = 'Host population size', xlab = 'Time')#
+	lines(1:years*120, hostann, col = 'red')#
+	mtext(paste("Ratio ", hostscaler, ":", round(vecscalerbasic, 2), " Hosts RR ", round(rec.rate, 2), " rate ", round(rate, 3), sep = ""), 3, line = 0)#
+#
+	plot(input$b.rate.track, type = "l", ylab = 'Bites per vector per time-step', xlab = 'Time')#
+#
+	plot(input$sb.rate.track, type = "l", ylab = 'Rate of change between susc and inf vectors', xlab = 'Time')#
+#
+	plot(input$vphtrack, type = "l", ylab = 'Vectors per host', xlab = 'Time')#
+	par(op)#
+}
+# Summarize the output by year (the raw output is per 3 days...)#
+NSann<-SUSann<-vecann<-Shostann<-hostann<-infadvecann<-infvecann<-infhostann<-advecann<-numeric(timesteps%/%120)#
+for (j in 1:years){#
+	hostann[j]    <- mean(outpop$host.tot [c(((120*j)-119):(120*j))])#
+	Shostann[j]   <- mean(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	vecann[j]     <- mean(outpop$vec.tot  [c(((120*j)-119):(120*j))])#
+	advecann[j]   <- mean(outpop$vecad.tot[c(((120*j)-119):(120*j))])#
+	infhostann[j] <- mean(outpop$Itot     [c(((120*j)-119):(120*j))])#
+	infvecann[j]  <- mean(outpop$totinfvec[c(((120*j)-119):(120*j))])#
+	infadvecann[j]<- mean(outpop$totinfadvec[c(((120*j)-119):(120*j))])#
+	SUSann[j]     <- mean(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	NSann[j]      <- mean(outpop$NShost.tot[c(((120*j)-119):(120*j))])#
+	}#
+#
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5)) # population growth rate, hosts#
+vrate <-(vecann[length(vecann)]/vecann[5])^(1/(years-5)) # population growth rate ,vectors#
+#
+propinfhost <-infhostann/Shostann # propoption of infected hosts#
+PIHbase     <-propinfhost[1]      # initial propoption of infected hosts#
+propinfvec  <-infvecann/vecann    # propoption of infected vectors#
+propinfadvec<-infadvecann/advecann# propoption of infected adult vectors#
+#
+mean(outpop$b.rate.track)#
+mean(outpop$sb.rate.track)#
+output_summary(outpop) # note that 'indexed' means, 'relative to initial conditions, which are set to be 1'#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PLOT UP THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+plotter(outpop)
+plotter <- function(input) {#
+	op <- par(mfrow = c(3, 2), mar = c(4, 4, 1, 1), oma = c(1, 1, 1, 1), xpd = NA)#
+#
+	plot(input$vec.tot, type = "l", xlab = 'Time', ylab = 'Vector population size')#
+	mtext(paste("VHmode", VHmode, "Vectors - rate ", round(vrate, 3), sep = " "), 3, line = 0)#
+#
+	plot(input$host.tot, type = "l", ylab = 'Host population size', xlab = 'Time')#
+	mtext(paste("Ratio ", hostscaler, ":", round(vecscalerbasic, 2), " Hosts RR ", round(rec.rate, 2), " rate ", round(rate, 3), sep = ""), 3, line = 0)#
+#
+	plot(input$b.rate.track, type = "l", ylab = 'Bites per vector per time-step', xlab = 'Time')#
+#
+	plot(input$sb.rate.track, type = "l", ylab = 'Rate of change between susc and inf vectors', xlab = 'Time')#
+#
+	plot(input$vphtrack, type = "l", ylab = 'Vectors per host', xlab = 'Time')#
+	par(op)#
+}
+population_plotter()
+population_plotter()
+ii              <- F    # If TRUE, vector population increases linearly with host population. If FALSE, vector population increases exponentially#
+####################################################################
+#~~~~~~~~~~~~~~~ RUN THE SIMULATION          ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+output <- simulator()#
+outpop <- output$pop#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PROCESS THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+#
+# Summarize the output by year (the raw output is per 3 days...)#
+NSann<-SUSann<-vecann<-Shostann<-hostann<-infadvecann<-infvecann<-infhostann<-advecann<-numeric(timesteps%/%120)#
+for (j in 1:years){#
+	hostann[j]    <- mean(outpop$host.tot [c(((120*j)-119):(120*j))])#
+	Shostann[j]   <- mean(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	vecann[j]     <- mean(outpop$vec.tot  [c(((120*j)-119):(120*j))])#
+	advecann[j]   <- mean(outpop$vecad.tot[c(((120*j)-119):(120*j))])#
+	infhostann[j] <- mean(outpop$Itot     [c(((120*j)-119):(120*j))])#
+	infvecann[j]  <- mean(outpop$totinfvec[c(((120*j)-119):(120*j))])#
+	infadvecann[j]<- mean(outpop$totinfadvec[c(((120*j)-119):(120*j))])#
+	SUSann[j]     <- mean(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	NSann[j]      <- mean(outpop$NShost.tot[c(((120*j)-119):(120*j))])#
+	}#
+#
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5)) # population growth rate, hosts#
+vrate <-(vecann[length(vecann)]/vecann[5])^(1/(years-5)) # population growth rate ,vectors#
+#
+propinfhost <-infhostann/Shostann # propoption of infected hosts#
+PIHbase     <-propinfhost[1]      # initial propoption of infected hosts#
+propinfvec  <-infvecann/vecann    # propoption of infected vectors#
+propinfadvec<-infadvecann/advecann# propoption of infected adult vectors#
+#
+mean(outpop$b.rate.track)#
+mean(outpop$sb.rate.track)#
+output_summary(outpop) # note that 'indexed' means, 'relative to initial conditions, which are set to be 1'#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PLOT UP THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+plotter(outpop)#
+population_plotter()
+# Scenario choices.  Note that only one of these can be TRUE for a given simulation run#
+DEFAULT <- F    # Nothing changes#
+NS      <- T    # Non-susceptible hosts added; host population size doubles#
+SUS     <- F    # Susceptible hosts added; host population size doubles#
+BOTH    <- F    # Sus and non-sus host added in equal quantities (to existing sus pop); host population trebles#
+HALFREP <- F    # Half of the susceptible hosts gradually replaced by non-sus hosts; host population size stays constant#
+# Demographic parameters#
+trans.rate <- 0.5  # Chance that an infectious vector bite infects a host, and, that an infectious host infects an uninfected vector that bites it. Vary this between 10% and 100%#
+rec.rate        <- 0.01 # Monthly host recovery rate. Vary this between 0 and 4.5%. As a point of comparison, 2% recovery 0.02 results in a 73.8% probability of recovery within six months. #
+ii              <- F    # If TRUE, vector population increases linearly with host population. If FALSE, vector population increases exponentially#
+####################################################################
+#~~~~~~~~~~~~~~~ RUN THE SIMULATION          ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+output <- simulator()#
+outpop <- output$pop#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PROCESS THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+#
+# Summarize the output by year (the raw output is per 3 days...)#
+NSann<-SUSann<-vecann<-Shostann<-hostann<-infadvecann<-infvecann<-infhostann<-advecann<-numeric(timesteps%/%120)#
+for (j in 1:years){#
+	hostann[j]    <- mean(outpop$host.tot [c(((120*j)-119):(120*j))])#
+	Shostann[j]   <- mean(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	vecann[j]     <- mean(outpop$vec.tot  [c(((120*j)-119):(120*j))])#
+	advecann[j]   <- mean(outpop$vecad.tot[c(((120*j)-119):(120*j))])#
+	infhostann[j] <- mean(outpop$Itot     [c(((120*j)-119):(120*j))])#
+	infvecann[j]  <- mean(outpop$totinfvec[c(((120*j)-119):(120*j))])#
+	infadvecann[j]<- mean(outpop$totinfadvec[c(((120*j)-119):(120*j))])#
+	SUSann[j]     <- mean(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	NSann[j]      <- mean(outpop$NShost.tot[c(((120*j)-119):(120*j))])#
+	}#
+#
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5)) # population growth rate, hosts#
+vrate <-(vecann[length(vecann)]/vecann[5])^(1/(years-5)) # population growth rate ,vectors#
+#
+propinfhost <-infhostann/Shostann # propoption of infected hosts#
+PIHbase     <-propinfhost[1]      # initial propoption of infected hosts#
+propinfvec  <-infvecann/vecann    # propoption of infected vectors#
+propinfadvec<-infadvecann/advecann# propoption of infected adult vectors#
+#
+mean(outpop$b.rate.track)#
+mean(outpop$sb.rate.track)#
+output_summary(outpop) # note that 'indexed' means, 'relative to initial conditions, which are set to be 1'#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PLOT UP THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+plotter(outpop)#
+population_plotter()
+ii              <- T    # If TRUE, vector population increases linearly with host population. If FALSE, vector population increases exponentially#
+####################################################################
+#~~~~~~~~~~~~~~~ RUN THE SIMULATION          ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+output <- simulator()#
+outpop <- output$pop#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PROCESS THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+#
+# Summarize the output by year (the raw output is per 3 days...)#
+NSann<-SUSann<-vecann<-Shostann<-hostann<-infadvecann<-infvecann<-infhostann<-advecann<-numeric(timesteps%/%120)#
+for (j in 1:years){#
+	hostann[j]    <- mean(outpop$host.tot [c(((120*j)-119):(120*j))])#
+	Shostann[j]   <- mean(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	vecann[j]     <- mean(outpop$vec.tot  [c(((120*j)-119):(120*j))])#
+	advecann[j]   <- mean(outpop$vecad.tot[c(((120*j)-119):(120*j))])#
+	infhostann[j] <- mean(outpop$Itot     [c(((120*j)-119):(120*j))])#
+	infvecann[j]  <- mean(outpop$totinfvec[c(((120*j)-119):(120*j))])#
+	infadvecann[j]<- mean(outpop$totinfadvec[c(((120*j)-119):(120*j))])#
+	SUSann[j]     <- mean(outpop$Shost.tot[c(((120*j)-119):(120*j))])#
+	NSann[j]      <- mean(outpop$NShost.tot[c(((120*j)-119):(120*j))])#
+	}#
+#
+rate  <-(hostann[length(hostann)]/hostann[5])^(1/(years-5)) # population growth rate, hosts#
+vrate <-(vecann[length(vecann)]/vecann[5])^(1/(years-5)) # population growth rate ,vectors#
+#
+propinfhost <-infhostann/Shostann # propoption of infected hosts#
+PIHbase     <-propinfhost[1]      # initial propoption of infected hosts#
+propinfvec  <-infvecann/vecann    # propoption of infected vectors#
+propinfadvec<-infadvecann/advecann# propoption of infected adult vectors#
+#
+mean(outpop$b.rate.track)#
+mean(outpop$sb.rate.track)#
+output_summary(outpop) # note that 'indexed' means, 'relative to initial conditions, which are set to be 1'#
+#
+####################################################################
+#~~~~~~~~~~~~~~~ PLOT UP THE RESULTS         ~~~~~~~~~~~~~~~~~~~~~##
+####################################################################
+plotter(outpop)#
+population_plotter()
+population_plotter
+propinfhost
+propinfhost
+population_plotter <- function() {#
+	op <- par(mfrow = c(1, 2), mar = c(4, 4, 1, 1))#
+#
+	hostbase <- infhostann[stay]#
+	vecbase <- infvecann[stay]#
+#
+	hostbase <- infhostann[stay]#
+	vecbase  <- infvecann[stay]#
+	DIH      <- infhostann/hostbase#
+	DIV      <- infvecann/vecbase#
+#
+	DIAV <- infadvecann/infadvecann[stay]#
+	PIAV <- propinfadvec#
+#
+	PIH <- propinfhost#
+	PIV <- propinfvec#
+	PIHchange <- PIH[length(PIH)]/PIHbase#
+#
+	plot(PIH, type = "l", col = "red", lty = 3, xlab = "Time", ylab = "Proportion infected", #
+		ylim = c(0, 1))#
+	lines(PIAV, lty = 1, col = "red")#
+	abline(v = c(20, 35), lty = 2)#
+	legend("topright", c("Proportion infected Hosts", "Proportion infected adult Vectors"), #
+		lty = c(3, 1), col = "red", bg = "white", bty = "o")#
+#
+	plottop <- max(1.2, max(DIH, DIAV))#
+	plot(DIH, type = "l", col = "red", lty = 3, xlab = "Time", ylab = "Density infected", #
+		ylim = c(0, plottop))#
+	lines(DIAV, lty = 1, col = "red")#
+	abline(h = 1, lty = 2, lwd = 1, col = "black")#
+	abline(v = c(20, 35), lty = 2)#
+	legend("bottomright", c("Density infected hosts", "Density infected adult vectors"), #
+		lty = c(3, 1), col = "red", bg = "white", bty = "o")#
+#
+	par(op)#
+	return(data.frame(DIH = DIH, PIH = PIH, DIV = DIV, PIV = PIV))#
+}
+population_plotter()
+infected_proportions_calc <- function(){#
+	hostbase <- infhostann[stay]#
+	vecbase  <- infvecann[stay]#
+	DIH      <- infhostann/hostbase#
+	DIV      <- infvecann/vecbase#
+#
+	DIAV <- infadvecann/infadvecann[stay]#
+	PIAV <- propinfadvec#
+#
+	PIHchange <- PIH[length(PIH)]/PIHbase#
+	return(data.frame(DIH = DIH, PIH = PIH, DIV = DIAV, PIV = PIAV))#
+}
+infected_proportions <- infected_proportions_calc()
+infected_proportions_calc <- function(){#
+	hostbase <- infhostann[stay]#
+	vecbase  <- infvecann[stay]#
+	DIH      <- infhostann/hostbase#
+	PIH<-propinfhost[-c(1:stay)]#
+#
+	DIAV <- infadvecann/infadvecann[stay]#
+	PIAV <- propinfadvec#
+	return(data.frame(DIH = DIH, PIH = PIH, DIAV = DIAV, PIAV = PIAV))#
+}
+infected_proportions <- infected_proportions_calc()
+infected_proportions_calc <- function(){#
+	hostbase <- infhostann[stay]#
+	vecbase  <- infvecann[stay]#
+	DIH      <- infhostann/hostbase#
+	PIH      <-propinfhost#
+#
+	DIAV <- infadvecann/infadvecann[stay]#
+	PIAV <- propinfadvec#
+	return(data.frame(DIH = DIH, PIH = PIH, DIAV = DIAV, PIAV = PIAV))#
+}
+infected_proportions <- infected_proportions_calc()
+infected_proportions
+population_plotter(infected_proportions)
+population_plotter <- function(input) {#
+	op <- par(mfrow = c(1, 2), mar = c(4, 4, 1, 1))#
+#
+	plot(input$PIH, type = "l", col = "red", lty = 3, xlab = "Time", ylab = "Proportion infected", #
+		ylim = c(0, 1))#
+	lines(input$PIAV, lty = 1, col = "red")#
+	abline(v = c(20, 35), lty = 2)#
+	legend("topright", c("Proportion infected Hosts", "Proportion infected adult Vectors"), #
+		lty = c(3, 1), col = "red", bg = "white", bty = "o")#
+#
+	plottop <- max(1.2, max(input$DIH, input$DIAV))#
+	plot(input$DIH, type = "l", col = "red", lty = 3, xlab = "Time", ylab = "Density infected", #
+		ylim = c(0, plottop))#
+	lines(input$DIAV, lty = 1, col = "red")#
+	abline(h = 1, lty = 2, lwd = 1, col = "black")#
+	abline(v = c(20, 35), lty = 2)#
+	legend("bottomright", c("Density infected hosts", "Density infected adult vectors"), #
+		lty = c(3, 1), col = "red", bg = "white", bty = "o")#
+#
+	par(op)#
+}#
+host_dynamics_plotter <- function(input) {#
+	cols <- c('pink', 'yellow', 'limegreen', 'red', 'darkgoldenrod', 'forestgreen')#
+	Hpop <- input[, c("Sjuv", "Ijuv", "Rjuv", "Sy2", "Iy2", "Ry2")]#
+	temp <- t(apply(Hpop, 1, cumsum))#
+	temp <- apply(temp, 2, FUN = function(x) {lowess(x, f = 0.005)$y})#
+	op <- par(mfrow = c(1, 1), mar = c( 4, 4, 2, 2))#
+	plot(1, xlim = c(0, nrow(temp)), ylim = c(0, max(temp)), type = "n", ylab = "Population size of hosts", xlab = 'time')#
+	polygon(c(1:nrow(temp), nrow(temp):1), c(rep(0, nrow(temp)), rev(temp[, 1])), col = 'pink', border = NA)#
+	for (i in 1:5) {#
+		polygon(c(1:nrow(temp), nrow(temp):1), c(temp[, i], rev(temp[, i + 1])), col = cols[i+1], border = NA)#
+	}#
+	legend("topleft", legend = c("Recovered adults", 'Infercted adults', 'Susceptible adults', 'Recovered juveniles', 'Infected juveniles', 'Susceptible juveniles'), fill = rev(cols), ncol = 2)#
+	par(op)#
+}#
+output_summary <- function(input) {#
+	startx <- mean(input$vecad.tot[c(1000:2000)])#
+	finish.vec <- mean(input$vecad.tot[c(7000:8000)])#
+	vir <- finish.vec/startx#
+#
+	startx <- mean(input$host.tot[c(1000:2000)])#
+	finish.host <- mean(input$host.tot[c(7000:8000)])#
+	hir <- finish.host/startx#
+#
+	hostbase <- infhostann[stay]#
+	vecbase <- infvecann[stay]#
+	PIH <- propinfhost#
+	PIV <- propinfvec#
+	PIHchange <- PIH[length(PIH)]/PIHbase#
+	rel <- ifelse(ii, "linear", "exponential")#
+	cat("Vector increase rate:", vir, "\nHost increase rate = ", hir, "\nFinal vector/host ratio = ", finish.vec/finish.host, "\nTransmission success rate = ", trans.rate, "\nHost recovery rate = ", rec.rate, "\nVector-host relationship = ", rel, "\nFinal proportion of infected susceptible hosts (indexed) = ", PIHchange)#
+}
+population_plotter(infected_proportions)
+host_dynamics_plotter(outpop)
+host_dynamics_plotter <- function(input) {#
+	cols <- c('pink', 'yellow', 'limegreen', 'red', 'darkgoldenrod', 'forestgreen')#
+	Hpop <- input[, c("Sjuv", "Ijuv", "Rjuv", "Sy2", "Iy2", "Ry2")]#
+	temp <- t(apply(Hpop, 1, cumsum))#
+	temp <- apply(temp, 2, FUN = function(x) {lowess(x, f = 0.005)$y})#
+	op <- par(mfrow = c(1, 1), mar = c( 4, 4, 2, 2))#
+	plot(1, xlim = c(0, nrow(temp)), ylim = c(0, max(temp)), type = "n", ylab = "Population size of hosts", xlab = 'time')#
+	polygon(c(1:nrow(temp), nrow(temp):1), c(rep(0, nrow(temp)), rev(temp[, 1])), col = 'pink', border = NA)#
+	for (i in 1:5) {#
+		polygon(c(1:nrow(temp), nrow(temp):1), c(temp[, i], rev(temp[, i + 1])), col = cols[i+1], border = NA)#
+	}#
+	legend("topleft", legend = c("Recovered adults", 'Infected adults', 'Susceptible adults', 'Recovered juveniles', 'Infected juveniles', 'Susceptible juveniles'), fill = rev(cols), ncol = 2)#
+	par(op)#
+}#
+output_summary <- function(input) {#
+	startx <- mean(input$vecad.tot[c(1000:2000)])#
+	finish.vec <- mean(input$vecad.tot[c(7000:8000)])#
+	vir <- finish.vec/startx#
+#
+	startx <- mean(input$host.tot[c(1000:2000)])#
+	finish.host <- mean(input$host.tot[c(7000:8000)])#
+	hir <- finish.host/startx#
+#
+	hostbase <- infhostann[stay]#
+	vecbase <- infvecann[stay]#
+	PIH <- propinfhost#
+	PIV <- propinfvec#
+	PIHchange <- PIH[length(PIH)]/PIHbase#
+	rel <- ifelse(ii, "linear", "exponential")#
+	cat("Vector increase rate:", vir, "\nHost increase rate = ", hir, "\nFinal vector/host ratio = ", finish.vec/finish.host, "\nTransmission success rate = ", trans.rate, "\nHost recovery rate = ", rec.rate, "\nVector-host relationship = ", rel, "\nFinal proportion of infected susceptible hosts (indexed) = ", PIHchange)#
+}
+host_dynamics_plotter(outpop)
+host_dynamics_plotter <- function(input, smoothing = 0.005) {#
+	cols <- c('pink', 'yellow', 'limegreen', 'red', 'darkgoldenrod', 'forestgreen')#
+	Hpop <- input[, c("Sjuv", "Ijuv", "Rjuv", "Sy2", "Iy2", "Ry2")]#
+	temp <- t(apply(Hpop, 1, cumsum))#
+	temp <- apply(temp, 2, FUN = function(x) {lowess(x, f = smoothing)$y})#
+	op <- par(mfrow = c(1, 1), mar = c( 4, 4, 2, 2))#
+	plot(1, xlim = c(0, nrow(temp)), ylim = c(0, max(temp)), type = "n", ylab = "Population size of hosts", xlab = 'time')#
+	polygon(c(1:nrow(temp), nrow(temp):1), c(rep(0, nrow(temp)), rev(temp[, 1])), col = 'pink', border = NA)#
+	for (i in 1:5) {#
+		polygon(c(1:nrow(temp), nrow(temp):1), c(temp[, i], rev(temp[, i + 1])), col = cols[i+1], border = NA)#
+	}#
+	legend("topleft", legend = c("Recovered adults", 'Infected adults', 'Susceptible adults', 'Recovered juveniles', 'Infected juveniles', 'Susceptible juveniles'), fill = rev(cols), ncol = 2)#
+	par(op)#
+}
+host_dynamics_plotter(outpop, smoothing = 0.000) # Using a larger number for smoothing will reduce the many peaks.
+host_dynamics_plotter(outpop, smoothing = 0.00001) # Using a larger number for smoothing will reduce the many peaks.
+host_dynamics_plotter(outpop, smoothing = 0.000001) # Using a larger number for smoothing will reduce the many peaks.
+host_dynamics_plotter(outpop, smoothing = 0.001) # Using a larger number for smoothing will reduce the many peaks.
+host_dynamics_plotter(outpop, smoothing = 0.01) # Using a larger number for smoothing will reduce the many peaks.
+host_dynamics_plotter(outpop, smoothing = 0.1) # Using a larger number for smoothing will reduce the many peaks.
+host_dynamics_plotter(outpop, smoothing = 0.005) # Using a larger number for smoothing will reduce the many peaks, and show the overall trends better.
+source("http://manuplants.org/BIOU9CE/Practical_3.R")
+rm(list=ls())#
+source("http://manuplants.org/BIOU9CE/Practical_3.R")
+rm(list=ls())#
+source("http://manuplants.org/BIOU9CE/Practical_3.R")
+rm(list=ls())#
+source("http://manuplants.org/BIOU9CE/Practical_3.R")
+rm(list=ls())#
+source("http://manuplants.org/BIOU9CE/Practical_3.R")

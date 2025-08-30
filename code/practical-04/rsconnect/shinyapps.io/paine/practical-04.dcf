@@ -1,0 +1,13 @@
+name: practical-04
+title: practical-04
+username:
+account: paine
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 222566
+bundleId: 1016283
+url: https://paine.shinyapps.io/practical-04/
+when: 1507486148.26643
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: www/docs/biou9pc-04.pdf

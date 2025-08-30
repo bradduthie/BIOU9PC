@@ -1,0 +1,68 @@
+require(spatstats)#
+#source('http://guianaplants.stir.ac.uk/BIOU9CE/Practical_5.R')#
+source('Practical_5.R')
+source('Practical_5.R')
+max.time     <- 2000#
+arena        <- 'rect' # Change to 'circular' for a circular arena#
+torus        <- T # only relevant if arena == 'torus'#
+plate_radius <- 30000 # from luckinbill, 60 mm radius is 30 mm radius, is 30000 µm radius # Only used for arena = 'circular'#
+Xlim         <- 150000  # Only used for arena = 'rect'#
+Ylim         <- 100000  # Only used for arena = 'rect'
+#### START Define parameters of the model ####
+# Reproduction#
+Nb     <-    2.01 # how much resource does a prey have to consume to make a new prey. Must exceed 1, as each new prey gets an initial value of 1. #
+Pb     <-    16.1  # how many prey does a predator have to consume to make a new predator? Must exceed 1, as each new prey gets an initial value of 1. #
+d      <-    0.01 # What's the per-capita likelihood that a predator will die in any time-step?#
+dd     <-    1.0  # Density dependence for prey. Vary it between 1 & 3 (or so). If it's large, then competiton among prey is strong when density is high. If close to 1, then energy gain is insensitive to density#
+#
+# Mobility#
+Nspeed <-   2000    # What is the maximum distance that prey move in one timestep?#
+Pspeed <-   2500    # What is the maximum distance that predator move in one timestep?#
+catch_dist     <- 2*Pspeed      # What is the 'event horizon' for a predator-prey interaction? Ie, at what distance is detection and ingestion inevitable? If predator and prey get this close together, then the prey's a goner!#
+Psearch_radius <- 7*catch_dist  # within this distance of a prey, the predator apprches that prey. Otherwise, it moves randomly. Set to 0 for predators to always hunt randomly#
+Ndodge_radius  <- 5*catch_dist  # Within this distance of a predator, the prey tries to move away from that predator. Set to 0 for prey to always move randomly. #
+### END Definition of parameters
+### START INITIAL CONDITIONS#
+Nn_init <- 100  # initial number of prey#
+Pn_init <- 10  # initial number of predators#
+### END INITIAL CONDITIONS
+### Run the model ####
+initial_setup() # ESTABLISH initial distribution of prey and predators#
+for (t in 2:max.time) {#
+	plotNPpos(100)                        # Plot current positions. If model is running slowly, increase interval, or do not specify an interval. Or, to make the model run much faster, comment out this line. THis will disable plotting altogether, but greatly accelerate the speed at which the model runs#
+#	text(Re(Npos), Im(Npos), 1:length(Npos), pos = 4)#
+#	points(Npos[which_dodge], col = 'green')#
+#	points(Npos[closest_prey], col = 'blue', cex = 2)#
+	Nmover()                                        # This Function causes the prey to move#
+	Pmover()                                        # This Function causes the predators to move#
+	Pkiller()                                       # Mortality to predators #
+	if (out$P[t] <= 0) {cat("\n\n*** Predator extinct ***\n\n"); break} # Stop if predator goes extinct#
+	Nkiller()                                       # Mortality to prey#
+	if (out$N[t] <= 0) {cat("\n\n*** Prey extinct ***\n\n");	 break} # Stop if prey goes extinct #
+	Nreproducer()                                   # Prey reproduction - density dependent#
+	Preproducer()                                   # Predator reproduction#
+} #
+### End running the model ####
+out <- out[!is.na(out$N) & !is.na(out$P), ]  # cut down the output file, if one population went extinct.
+### Run the model ####
+initial_setup() # ESTABLISH initial distribution of prey and predators#
+for (t in 2:max.time) {#
+	plotNPpos(100)                        # Plot current positions. If model is running slowly, increase interval, or do not specify an interval. Or, to make the model run much faster, comment out this line. THis will disable plotting altogether, but greatly accelerate the speed at which the model runs#
+#	text(Re(Npos), Im(Npos), 1:length(Npos), pos = 4)#
+#	points(Npos[which_dodge], col = 'green')#
+#	points(Npos[closest_prey], col = 'blue', cex = 2)#
+	Nmover()                                        # This Function causes the prey to move#
+	Pmover()                                        # This Function causes the predators to move#
+	Pkiller()                                       # Mortality to predators #
+	if (out$P[t] <= 0) {cat("\n\n*** Predator extinct ***\n\n"); break} # Stop if predator goes extinct#
+	Nkiller()                                       # Mortality to prey#
+	if (out$N[t] <= 0) {cat("\n\n*** Prey extinct ***\n\n");	 break} # Stop if prey goes extinct #
+	Nreproducer()                                   # Prey reproduction - density dependent#
+	Preproducer()                                   # Predator reproduction#
+} #
+### End running the model ####
+out <- out[!is.na(out$N) & !is.na(out$P), ]  # cut down the output file, if one population went extinct.
+require(spatstats)
+require(spatstat)
+require(spatstat)
+require(spatstat)

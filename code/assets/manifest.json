@@ -1,0 +1,51 @@
+{
+  "dependencies": {
+    "main.js": {
+      "bower": [
+        "bootstrap-sass",
+        "respond",
+        "html5shiv"
+      ],
+      "files": [
+        "scripts/main.js"
+      ],
+      "main": true
+    },
+    "jquery.min.js": {
+      "bower": [
+        "jquery"
+      ]
+    },
+    "shiny-showcase.js": {
+      "files": [
+        "scripts/shiny-showcase.js"
+      ]
+    },
+    "main.css": {
+      "bower": [
+        "bootstrap-sass"
+      ],
+      "files": [
+        "styles/main.scss"
+      ],
+      "main": true
+    },
+    "fonts": {
+      "files": [
+      	"../bower_components/components-font-awesome/fonts/fontawesome-webfont.eot",
+      	"../bower_components/components-font-awesome/fonts/fontawesome-webfont.svg",
+      	"../bower_components/components-font-awesome/fonts/fontawesome-webfont.ttf",
+      	"../bower_components/components-font-awesome/fonts/fontawesome-webfont.woff",
+      	"../bower_components/components-font-awesome/fonts/fontawesome-webfont.woff2",
+      	"../bower_components/components-font-awesome/fonts/FontAwesome.otf"
+      ]
+    }
+  },
+  "paths": {
+    "source": "assets/",
+    "dist": "practical-07/www/shared/"
+  },
+  "config": {
+    "devUrl": "http://127.0.0.1:3847/"
+  }
+}
